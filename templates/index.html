@@ -355,11 +355,11 @@
                 alert.className = `alert show ${data.status}`;
 
                 if (data.urls && data.urls.length > 0) {
-                    // بررسی و نمایش بر اساس نوع پورت
+                    // برچسب‌های صحیح برای پورت‌ها
                     const urlLabels = {
-                        2053: "🎛️ پنل 3x-ui",
-                        2097: "📡 Inbound",
-                        8080: "🌐 وب‌سرور"
+                        0: "🎛️ پنل 3x-UI (localhost:2053)",
+                        1: "📡 Inbound (localhost:2097)",
+                        2: "🔐 Tunnel (localhost:2098)"
                     };
 
                     data.urls.forEach((url, index) => {
@@ -367,10 +367,7 @@
                         const isPanel = index === 0;
                         urlBox.className = `url-item ${isPanel ? 'panel' : 'tunnel'}`;
 
-                        // تشخیص خودکار نوع آدرس
-                        const labelText = isPanel ? 
-                            "🎛️ پنل (localhost:2053)" : 
-                            `📡 Tunnel ${index} (localhost:${2097 + (index - 1)})`;
+                        const labelText = urlLabels[index] || `تانل ${index + 1}`;
 
                         urlBox.innerHTML = `
                             <div class="url-content">
@@ -393,7 +390,8 @@
                     infoBox.innerHTML = `
                         <strong>💾 اطلاعات:</strong><br>
                         تعداد آدرس: ${data.urls.length}<br>
-                        حجم لاگ: ${(data.log_size / 1024).toFixed(2)} KB
+                        حجم لاگ: ${(data.log_size / 1024).toFixed(2)} KB<br>
+                        <strong>📌 نکته:</strong> وب‌سرور (8080) بدون تانل، مستقیماً از Railway domain قابل دسترسی است.
                     `;
                     
                     if (data.timestamp) {
@@ -447,12 +445,8 @@
         // استخراج خودکار هنگام بارگیری
         window.addEventListener("load", () => {
             console.log("✅ صفحه بارگیری شد");
-            // بعد از ۳ ثانیه، استخراج خودکار انجام شود
-            setTimeout(() => {
-                console.log("🔍 استخراج خودکار آدرس‌ها...");
-                // extractUrls();  // اختیاری: فعال کن اگر می‌خوای خودکار شروع شود
-            }, 3000);
         });
     </script>
 </body>
 </html>
+
