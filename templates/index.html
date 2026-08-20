@@ -304,9 +304,7 @@
             <button class="secondary-btn" id="refreshBtn" onclick="extractUrls()">
                 🔄 بازخوانی
             </button>
-            <button class="secondary-btn" onclick="toggleLogs()">
-                📋 نمایش لاگ
-            </button>
+            
         </div>
 
         <div class="loading" id="loading">
@@ -320,12 +318,7 @@
             <div class="info-box" id="infoBox"></div>
             <div id="timestamp" class="timestamp"></div>
         </div>
-
-        <div id="logsContainer" style="display: none; margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
-            <h3 style="margin-bottom: 10px; color: #333;">لاگ‌های خام:</h3>
-            <pre id="logsContent" style="background: #333; color: #0f0; padding: 10px; border-radius: 5px; font-size: 11px; max-height: 300px; overflow-y: auto; font-family: 'Courier New';">Loading...</pre>
-        </div>
-    </div>
+    
 
     <script>
         async function extractUrls() {
@@ -358,8 +351,8 @@
                     // برچسب‌های صحیح برای پورت‌ها
                     const urlLabels = {
                         0: "🎛️ پنل 3x-UI (localhost:2053)",
-                        1: "📡 Inbound (localhost:2097)",
-                        2: "🔐 Tunnel (localhost:2098)"
+                        1: "📡 Tunnel 1 (localhost:2097)",
+                        2: "🔐 Tunnel 2 (localhost:2098)"
                     };
 
                     data.urls.forEach((url, index) => {
